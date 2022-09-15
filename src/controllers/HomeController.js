@@ -1,4 +1,6 @@
-import { filterByCourse, filterByMatricula, relatorioSearch } from '../services/alunosService';
+import {
+  filterByCourse, filterByMatricula, filterByStatus, relatorioSearch,
+} from '../services/alunosService';
 import courseService from '../services/courseService';
 
 class HomeController {
@@ -8,6 +10,13 @@ class HomeController {
 
   alunos(req, res) {
     const alunos = filterByCourse(req.params.siglaCurso);
+
+    if (req.query) {
+      const alunosStatus = filterByStatus(alunos, req.query.status);
+
+      if (alunosStatus) res.status(200).json(alunosStatus);
+      else res.status(400).json({ error: 'Nao há alunos nesse estado.' });
+    }
 
     if (alunos) res.status(200).json(alunos);
     else res.status(404).json({ error: 'Curso nao encontrado' });

@@ -36,7 +36,17 @@ const relatorioSearch = (matricula) => {
   return alunoRelatorio;
 };
 
-// console.log(alunosFilter());
-// console.log(filterByMatricula('20151001004'));
-// console.log(filterByCourse('RDS'));
-export { filterByCourse, filterByMatricula, relatorioSearch };
+const filterByStatus = (alunosByCourse, status) => {
+  const alunosByStatus = alunosByCourse.filter((aluno) => {
+    if (aluno.status.toLowerCase() === status.toLowerCase()) return aluno;
+  });
+
+  return alunosByStatus;
+};
+
+export {
+  filterByCourse,
+  filterByMatricula,
+  relatorioSearch,
+  filterByStatus,
+};
