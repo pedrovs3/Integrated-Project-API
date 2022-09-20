@@ -1,5 +1,5 @@
 import {
-  filterByCourse, filterByMatricula, filterByStatus, relatorioSearch,
+  filterByCourse, filterByMatricula, filterByStatus, relatorioSearch, filterByYear, filterStudents,
 } from '../services/alunosService';
 import courseService from '../services/courseService';
 
@@ -11,11 +11,26 @@ class HomeController {
   alunos(req, res) {
     const alunos = filterByCourse(req.params.siglaCurso);
 
+    if (req.query.status && req.query.year) {
+      const alunosStatusAndYear = filterStudents(alunos, req.query);
+
+      if (alunosStatusAndYear) res.status(200).json(alunosStatusAndYear);
+      else res.status(400).json({ error: 'Not Founded' });
+      return;
+    }
+
     if (req.query.status) {
       const alunosStatus = filterByStatus(alunos, req.query.status);
 
       if (alunosStatus) res.status(200).json(alunosStatus);
       else res.status(400).json({ error: 'Nao há alunos com esse status.' });
+      return;
+    }
+
+    if (req.query.year) {
+      const alunosYear = filterByYear(alunos, req.query.year);
+
+      if (alunosYear) res.status(200).json(alunosYear);
       return;
     }
 

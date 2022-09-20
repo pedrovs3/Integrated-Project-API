@@ -44,9 +44,28 @@ const filterByStatus = (alunosByCourse, status) => {
   return alunosByStatus;
 };
 
+const filterByYear = (alunosByCourse, year) => {
+  const alunosByYear = alunosByCourse.filter((aluno) => {
+    if (aluno.curso[0].conclusao === year) return aluno;
+  });
+
+  return alunosByYear;
+};
+
+const filterStudents = (alunoByCourse, filters) => {
+  const { status, year } = filters;
+  const studentsFilter = alunoByCourse.filter((aluno) => {
+    if (aluno.status.toLowerCase() === status && aluno.curso[0].conclusao === year) return aluno;
+  });
+
+  return studentsFilter;
+};
+
 export {
   filterByCourse,
   filterByMatricula,
   relatorioSearch,
   filterByStatus,
+  filterByYear,
+  filterStudents,
 };
