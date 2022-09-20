@@ -1,6 +1,6 @@
 const corsOptions = {
-  origin: '*',
-  methods: ['GET', 'POST', 'DELETE', 'UPDATE', 'PUT', 'PATCH'],
+  origin: 'http://example.com',
+  methods: 'GET, POST, PUT, DELETE, OPTIONS',
 };
 
 export default corsOptions;

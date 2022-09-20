@@ -11,11 +11,12 @@ class HomeController {
   alunos(req, res) {
     const alunos = filterByCourse(req.params.siglaCurso);
 
-    if (req.query) {
+    if (req.query.status) {
       const alunosStatus = filterByStatus(alunos, req.query.status);
 
       if (alunosStatus) res.status(200).json(alunosStatus);
-      else res.status(400).json({ error: 'Nao há alunos nesse estado.' });
+      else res.status(400).json({ error: 'Nao há alunos com esse status.' });
+      return;
     }
 
     if (alunos) res.status(200).json(alunos);
