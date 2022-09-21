@@ -1,3 +1,9 @@
 const curso = require('../../mock/cursos.json');
 
-export default curso;
+const cursoService = () => {
+  const json = {};
+  json.cursos = curso;
+  return json;
+};
+
+export default cursoService();
