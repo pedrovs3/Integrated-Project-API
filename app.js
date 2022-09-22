@@ -3,6 +3,7 @@ import cors from 'cors';
 import homeRoutes from './src/routes/homeRoutes';
 import errorRoute from './src/routes/errorRoute';
 import globalMiddleware from './src/middlewares/globalMiddleware';
+import ServerlessHttp from 'serverless-http';
 
 class App {
   constructor() {
@@ -19,10 +20,12 @@ class App {
   }
 
   routes() {
-    this.app.use('/', homeRoutes);
+    this.app.use('/.netlify/functions/app', homeRoutes);
 
     this.app.use('*', errorRoute);
   }
 }
 
-export default new App().app;
+const handler = ServerlessHttp(new App().app);
+
+export { handler };
