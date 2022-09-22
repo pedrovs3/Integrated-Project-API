@@ -1,8 +1,8 @@
 import express from 'express';
 import cors from 'cors';
-import homeRoutes from './src/routes/homeRoutes';
-import errorRoute from './src/routes/errorRoute';
-import globalMiddleware from './src/middlewares/globalMiddleware';
+import homeRoutes from './routes/homeRoutes';
+import errorRoute from './routes/errorRoute';
+import globalMiddleware from './middlewares/globalMiddleware';
 
 class App {
   constructor() {
@@ -25,4 +25,4 @@ class App {
   }
 }
 
-export default new App().app
+export default new App().app;
