@@ -3,4 +3,4 @@ import app from './app';
 
 const handler = ServerlessHttp(app);
 
-export { handler }
+export { handler };
